@@ -88,6 +88,8 @@ Versi QGIS minimum: 3.22.
 
 ## Riwayat versi
 
+- **0.2.2** — Penulisan enum Processing yang kompatibel Qt6 (QGIS 4).
+- **0.2.1** — Perbaikan temuan pemindai keamanan (Bandit) dan impor QAction yang kompatibel Qt6.
 - **0.2.0**
   - Nama plugin menjadi *Contour Label*.
   - Opsi orientasi label ke atas lereng.
