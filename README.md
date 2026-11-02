@@ -97,6 +97,10 @@ Versi QGIS minimum: 3.22.
   - pengisian indeks dan label;
   - style otomatis.
 
+## Lisensi
+
+Contour Label dirilis di bawah [GNU General Public License versi 2](LICENSE) atau (sesuai pilihan Anda) versi setelahnya, sama dengan QGIS.
+
 ## Pengembang
 
 Alfian (Ian) — [alfianbphlxii@gmail.com](mailto:alfianbphlxii@gmail.com)
