@@ -21,6 +21,7 @@ import math
 from qgis.core import (
     Qgis,
     QgsCoordinateTransform,
+    QgsCsException,
     QgsGeometry,
     QgsLineString,
     QgsPointXY,
@@ -98,7 +99,7 @@ class PenilaiDEM:
                       (QgsCoordinateTransform, "ReverseTransform"))
         try:
             ext = self.xf.transformBoundingBox(raster.extent(), balik)
-        except Exception:  # noqa: BLE001
+        except QgsCsException:
             ext = raster.extent()
         lebar_px = ext.width() / max(raster.width(), 1)
         tinggi_px = ext.height() / max(raster.height(), 1)
@@ -110,7 +111,7 @@ class PenilaiDEM:
         try:
             q = self.xf.transform(p)
             v, ok = self.prov.sample(q, self.band)
-        except Exception:  # noqa: BLE001
+        except QgsCsException:
             return None
         if not ok or v is None or math.isnan(v):
             return None

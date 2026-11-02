@@ -55,6 +55,14 @@ def skor_nama_field(nama, alias=""):
     return skor
 
 
+def _null_qgis(is_null):
+    """True bila objek melaporkan dirinya NULL (QVariant NULL QGIS)."""
+    try:
+        return bool(is_null())
+    except TypeError:
+        return False
+
+
 def ke_angka(nilai):
     """
     Ubah nilai atribut menjadi float. Mengembalikan None bila kosong
@@ -65,12 +73,8 @@ def ke_angka(nilai):
         return None
     # NULL QGIS (QVariant) memiliki isNull()
     is_null = getattr(nilai, "isNull", None)
-    if callable(is_null):
-        try:
-            if is_null():
-                return None
-        except TypeError:
-            pass
+    if callable(is_null) and _null_qgis(is_null):
+        return None
     if isinstance(nilai, bool):
         return None
     if isinstance(nilai, (int, float)):

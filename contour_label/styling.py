@@ -72,18 +72,15 @@ def terapkan_label(layer, field_label, ikuti_arah_garis=False):
     except AttributeError:
         s.placementFlags = QgsPalLayerSettings.OnLine
 
-    # Ulangi label sepanjang garis panjang
-    try:
-        ls = s.lineSettings()
-        if hasattr(ls, "setRepeatDistance"):
-            ls.setRepeatDistance(JARAK_ULANG_LABEL)
-            ls.setRepeatDistanceUnit(_mm())
-            s.setLineSettings(ls)
-        else:
-            s.repeatDistance = JARAK_ULANG_LABEL
-            s.repeatDistanceUnit = _mm()
-    except Exception:  # noqa: BLE001 - opsi kosmetik, jangan gagalkan proses
-        pass
+    # Ulangi label sepanjang garis panjang (letak API berbeda antar-versi QGIS)
+    ls = s.lineSettings()
+    if hasattr(ls, "setRepeatDistance"):
+        ls.setRepeatDistance(JARAK_ULANG_LABEL)
+        ls.setRepeatDistanceUnit(_mm())
+        s.setLineSettings(ls)
+    elif hasattr(s, "repeatDistance"):
+        s.repeatDistance = JARAK_ULANG_LABEL
+        s.repeatDistanceUnit = _mm()
 
     if ikuti_arah_garis:
         # Label mengikuti arah garis apa adanya (boleh terbalik), sehingga
@@ -118,8 +115,6 @@ def terapkan(layer, field_indeks, field_label, indeks_numerik=True,
              ikuti_arah_garis=False, ada_tanpa_nilai=False):
     terapkan_renderer(layer, field_indeks, indeks_numerik, ada_tanpa_nilai)
     terapkan_label(layer, field_label, ikuti_arah_garis)
-    try:
+    if hasattr(layer, "emitStyleChanged"):
         layer.emitStyleChanged()
-    except AttributeError:
-        pass
     layer.triggerRepaint()

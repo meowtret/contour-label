@@ -2,7 +2,10 @@
 import os
 
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+try:  # Qt6: QAction pindah ke QtGui
+    from qgis.PyQt.QtGui import QAction
+except ImportError:  # Qt5
+    from qgis.PyQt.QtWidgets import QAction
 from qgis.core import Qgis, QgsApplication, QgsVectorLayer, QgsWkbTypes
 
 from .kompat import ambil
