@@ -65,12 +65,9 @@ def terapkan_label(layer, field_label, ikuti_arah_garis=False):
     # Label melengkung mengikuti garis, tepat di atas garis
     s.placement = ambil((Qgis, "LabelPlacement", "Curved"),
                         (QgsPalLayerSettings, "Curved"))
-    try:
-        ls = s.lineSettings()
-        ls.setPlacementFlags(QgsLabeling.LinePlacementFlag.OnLine)
-        s.setLineSettings(ls)
-    except AttributeError:
-        s.placementFlags = QgsPalLayerSettings.OnLine
+    ls = s.lineSettings()
+    ls.setPlacementFlags(QgsLabeling.LinePlacementFlag.OnLine)
+    s.setLineSettings(ls)
 
     # Ulangi label sepanjang garis panjang (letak API berbeda antar-versi QGIS)
     ls = s.lineSettings()

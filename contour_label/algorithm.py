@@ -103,7 +103,7 @@ class ContourLabelAlgorithm(QgsProcessingAlgorithm):
         try:
             return super().flags() | Qgis.ProcessingAlgorithmFlag.NoThreading
         except AttributeError:
-            return super().flags() | QgsProcessingAlgorithm.FlagNoThreading
+            return super().flags() | QgsProcessingAlgorithm.Flag.FlagNoThreading
 
     def shortHelpString(self):
         return _tr(
