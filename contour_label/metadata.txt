@@ -1,0 +1,19 @@
+[general]
+name=Contour Label
+qgisMinimumVersion=3.22
+description=Mengisi atribut indeks (mayor/minor) dan label garis kontur secara otomatis, lengkap dengan style siap pakai.
+about=Plugin untuk kontur hasil DEMNAS (GDAL Contour), RBI, maupun OSM. Field ketinggian dan interval kontur dideteksi otomatis, garis mayor ditentukan dari interval × kelipatan, lalu field indeks (1/0) dan label diisi langsung di layer. Opsional: orientasi label ke atas lereng, dengan arah lereng dibaca dari DEM atau dari kontur tetangga. Tersedia sebagai algoritma Processing (bisa batch dan Model Builder) dan tombol toolbar.
+version=0.2.0
+author=Alfian (Ian)
+email=alfianbphlxii@gmail.com
+repository=https://github.com/meowtret/contour-label
+tracker=https://github.com/meowtret/contour-label/issues
+homepage=https://github.com/meowtret/contour-label
+category=Vector
+icon=icon.png
+tags=contour,kontur,label,demnas,rbi,topography,index contour
+hasProcessingProvider=yes
+experimental=True
+deprecated=False
+changelog=0.2.0 - Nama plugin menjadi Contour Label. Opsi orientasi label ke atas lereng (dari DEM atau kontur tetangga); kategori legenda "Tanpa nilai" hanya muncul bila ada.
+  0.1.0 - Versi pertama: deteksi field dan interval, isi indeks & label, style otomatis.
